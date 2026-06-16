@@ -1,8 +1,8 @@
-from flask import Flask, render_template_string
+echo 'from flask import Flask, render_template_string
 
 app = Flask(__name__)
 
-# رابط بث beIN SPORTS MAX المباشر والنشط (قم بتغييره هنا مستقبلاً عند تحديث الروابط)
+# رابط البث المباشر الخاص بك والذي يعمل بكفاءة عالية
 STREAM_URL = "http://ibo.lynxiptv.com/live/777685932038/VJQBOrw29f/255242.m3u8"
 
 HTML_TEMPLATE = """
@@ -21,6 +21,7 @@ HTML_TEMPLATE = """
 </head>
 <body>
     <div class="video-container">
+        <!-- تم توجيه المشغل مباشرة للرابط السريع الخاص بك لتجنب البطء -->
         <video id="video" controls autoplay playsinline preload="auto"></video>
     </div>
     <script>
@@ -43,4 +44,4 @@ def index():
     return render_template_string(HTML_TEMPLATE, stream_url=STREAM_URL)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=7860)
+    app.run(host="0.0.0.0", port=7860)' > app.py
