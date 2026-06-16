@@ -1,48 +1,14 @@
-echo 'from flask import Flask, render_template_string
+echo 'from flask import Flask, redirect
 
 app = Flask(__name__)
 
-# رابط البث المباشر السريع الخاص بك
-STREAM_URL = "http://ibo.lynxiptv.com/live/777685932038/VJQBOrw29f/255242.m3u8"
-
-HTML_TEMPLATE = """
-<!DOCTYPE html>
-<html lang="ar">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- السطر السحري لمنع حظر سيرفر IPTV وجعل الرابط يفتح بكفاءة داخل موقعك -->
-    <meta name="referrer" content="no-referrer">
-    <title>beIN SPORTS Live</title>
-    <script src="https://jsdelivr.net"></script>
-    <style>
-        html, body { background-color: #000000; margin: 0; padding: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; overflow: hidden; }
-        .video-container { width: 100%; max-width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; }
-        video { width: 100%; height: auto; max-height: 100vh; aspect-ratio: 16 / 9; background: #000000; }
-    </style>
-</head>
-<body>
-    <div class="video-container">
-        <video id="video" controls autoplay playsinline preload="auto"></video>
-    </div>
-    <script>
-        var video = document.getElementById("video");
-        var videoSrc = "{{ stream_url }}";
-        if (Hls.isSupported()) {
-            var hls = new Hls({ maxBufferLength: 10, maxMaxBufferLength: 20, enableWorker: true });
-            hls.loadSource(videoSrc); hls.attachMedia(video);
-            hls.on(Hls.Events.MANIFEST_PARSED, function() { video.play(); });
-        } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-            video.src = videoSrc; video.addEventListener("loadedmetadata", function() { video.play(); });
-        }
-    </script>
-</body>
-</html>
-"""
+# الرابط الخاص بك الذي يعمل بكفاءة عالية في المتصفح
+STREAM_URL = "https://ibo.lynxiptv.com/live/777685932038/VJQBOrw29f/255242.m3u8"
 
 @app.route("/", methods=["GET"])
 def index():
-    return render_template_string(HTML_TEMPLATE, stream_url=STREAM_URL)
+    # توجيه المتصفح فورا لفتح الرابط مباشرة بكفاءته العالية وبدون جدار حماية
+    return redirect(STREAM_URL, code=302)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=7860)' > app.py
