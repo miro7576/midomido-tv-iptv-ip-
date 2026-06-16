@@ -2,14 +2,17 @@ echo 'from flask import Flask, render_template_string
 
 app = Flask(__name__)
 
-# تم تعديل الرابط برمجيا ليصبح آمنا ومتوافقا مع حماية المتصفح
+# رابط البث المباشر السريع الخاص بك
 STREAM_URL = "http://ibo.lynxiptv.com/live/777685932038/VJQBOrw29f/255242.m3u8"
+
 HTML_TEMPLATE = """
 <!DOCTYPE html>
 <html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- السطر السحري لمنع حظر سيرفر IPTV وجعل الرابط يفتح بكفاءة داخل موقعك -->
+    <meta name="referrer" content="no-referrer">
     <title>beIN SPORTS Live</title>
     <script src="https://jsdelivr.net"></script>
     <style>
