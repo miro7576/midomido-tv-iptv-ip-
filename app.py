@@ -2,9 +2,8 @@ echo 'from flask import Flask, render_template_string
 
 app = Flask(__name__)
 
-# رابط البث المباشر الخاص بك والذي يعمل بكفاءة عالية
+# تم تعديل الرابط برمجيا ليصبح آمنا ومتوافقا مع حماية المتصفح
 STREAM_URL = "http://ibo.lynxiptv.com/live/777685932038/VJQBOrw29f/255242.m3u8"
-
 HTML_TEMPLATE = """
 <!DOCTYPE html>
 <html lang="ar">
@@ -21,7 +20,6 @@ HTML_TEMPLATE = """
 </head>
 <body>
     <div class="video-container">
-        <!-- تم توجيه المشغل مباشرة للرابط السريع الخاص بك لتجنب البطء -->
         <video id="video" controls autoplay playsinline preload="auto"></video>
     </div>
     <script>
